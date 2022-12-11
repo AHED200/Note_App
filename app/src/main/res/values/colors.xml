@@ -11,5 +11,6 @@
     <color name="dark_brown">#FF7E3D00</color>
     <color name="brown">#FFCC9C6F</color>
     <color name="grey">#FFD9D9D9</color>
+    <color name="dark_gery">#FF4D4B4B</color>
     <color name="red">#AAFF0000</color>
 </resources>

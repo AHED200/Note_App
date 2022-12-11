@@ -1,5 +1,6 @@
 package com.example.noteapp.Views
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.noteapp.databinding.ActivityMainBinding
@@ -17,5 +18,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
+
+        //Moving to create new note page
+        binding.butCreateNote.setOnClickListener {
+            val createNoteIntent=Intent(this, CreateNote::class.java)
+            startActivity(createNoteIntent)
+        }
     }
 }
