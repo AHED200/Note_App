@@ -1,6 +1,5 @@
 package com.example.noteapp.Models.Interfaces
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -16,5 +15,5 @@ interface NoteDao {
     suspend fun deleteNote(note: Note)
 
     @Query("SELECT * FROM notes")
-    fun getAllNotes():LiveData<List<Note>>
+    fun getAllNotes():List<Note>
 }

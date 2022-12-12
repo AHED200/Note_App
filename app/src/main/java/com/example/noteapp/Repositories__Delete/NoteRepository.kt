@@ -1,22 +1,17 @@
-package com.example.noteapp.Repositories
+package com.example.noteapp.Repositories__Delete
 
-import NoteDatabase
 import android.content.Context
-import androidx.lifecycle.LiveData
 import com.example.noteapp.Models.Note
+import com.example.noteapp.Models.NoteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class NoteRepository(private var noteDatabase: NoteDatabase) {
 
-    var allNotes: LiveData<List<Note>>? = null
+    var allNotes: List<Note> ?= null
 
-    fun getAllNotes(context: Context): LiveData<List<Note>>? {
-        allNotes = noteDatabase.noteDao().getAllNotes()
 
-        return allNotes
-    }
 
     fun insertNote(context: Context, note: Note) {
         CoroutineScope(IO).launch {

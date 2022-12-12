@@ -1,17 +1,33 @@
-import androidx.lifecycle.MutableLiveData
+
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.noteapp.Models.Note
+import com.example.noteapp.Models.NoteDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class NoteViewModel() : ViewModel() {
-    lateinit var database: NoteDatabase
-    var allNotes= MutableLiveData<ArrayList<Note>>()
+class NoteViewModel(context: Context) : ViewModel() {
+    private var database: NoteDatabase
 
-    suspend fun insertNote(note: Note){
-        database.noteDao().insertNote(note)
+    init {
+        database = NoteDatabase.getDatabase(context)
     }
 
-    suspend fun deleteNote(note: Note){
-        database.noteDao().deleteNote(note)
+    fun getAllNotes(): List<Note> {
+        return database.noteDao().getAllNotes()
+    }
+
+    fun insertNote(note: Note) {
+        CoroutineScope(Dispatchers.IO).launch {
+            database.noteDao().insertNote(note)
+        }
+    }
+
+    fun deleteNote(note: Note) {
+        CoroutineScope(Dispatchers.IO).launch {
+            database.noteDao().deleteNote(note)
+        }
     }
 
 }
