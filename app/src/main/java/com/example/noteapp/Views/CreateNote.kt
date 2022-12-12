@@ -38,7 +38,7 @@ class CreateNote : AppCompatActivity() {
                 val current = LocalDateTime.now().format(formatter)
 
                 //Define the Note object and NoteViewModel
-                val newNote = Note(null, noteTitle, noteDescription, current)dcd `x
+                val newNote = Note(null, noteTitle, noteDescription, current)
 
                 //Insert the new note to the database
                 noteViewModel.insertNote(newNote)
