@@ -38,19 +38,14 @@ class CreateNote : AppCompatActivity() {
                 val current = LocalDateTime.now().format(formatter)
 
                 //Define the Note object and NoteViewModel
-                val newNote = Note(null, noteTitle, noteDescription, current)
-
+                val newNote = Note(null, noteTitle, noteDescription, current)dcd `x
 
                 //Insert the new note to the database
                 noteViewModel.insertNote(newNote)
-
-                val allNotes = noteViewModel.getAllNotes()
-                println("allNotes!!.value.toString(): ${allNotes.size}")
-
             }
 
             Toast.makeText(this, "The note is inserted successfully", Toast.LENGTH_SHORT).show()
-
+            finish()
         }
     }
 }
