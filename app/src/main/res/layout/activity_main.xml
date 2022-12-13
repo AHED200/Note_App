@@ -33,7 +33,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAllNote"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"
+            />
 
         <Button
             android:id="@+id/butCreateNote"
