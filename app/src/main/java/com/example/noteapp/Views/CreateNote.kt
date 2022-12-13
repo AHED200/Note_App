@@ -11,10 +11,12 @@ import com.example.noteapp.databinding.ActivityCreateNoteBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+
 class CreateNote : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateNoteBinding
     lateinit var noteViewModel: NoteViewModel
+    var RESULT_CODE=0
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +45,18 @@ class CreateNote : AppCompatActivity() {
                 //Insert the new note to the database
                 noteViewModel.insertNote(newNote)
 
+                //Change the result code form 0 to 1
+                RESULT_CODE=1
+
                 //Show toast and quit the CreateNote activity
                 Toast.makeText(this, "The note is inserted successfully", Toast.LENGTH_SHORT).show()
                 finish()
             }
-
-
         }
+    }
+
+    override fun finish() {
+        setResult(RESULT_CODE)
+        super.finish()
     }
 }

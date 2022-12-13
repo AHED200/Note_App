@@ -12,6 +12,8 @@ import com.example.noteapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var viewModel: NoteViewModel? = null
+    private var adapter: NotesRecyclerViewAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        val viewModel = NoteViewModel(this)
-        val adapter = NotesRecyclerViewAdapter(viewModel.getAllNotes())
+        viewModel = NoteViewModel(this)
+        adapter = NotesRecyclerViewAdapter(viewModel!!.getAllNotes(), this)
         //Bind RecyclerView with adapter
         binding.rvAllNote.layoutManager = LinearLayoutManager(this)
         binding.rvAllNote.adapter = adapter
@@ -29,9 +31,21 @@ class MainActivity : AppCompatActivity() {
         //Moving to create new note page
         binding.butCreateNote.setOnClickListener {
             val createNoteIntent = Intent(this, CreateNote::class.java)
-            startActivity(createNoteIntent)
+            startActivityForResult(createNoteIntent, 0)
         }
 
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //1 equals the note is created done otherwise the note not created
+        //2 means the note deleted successfully
+        if (resultCode == 1) {
+            adapter!!.allNotes = viewModel!!.getAllNotes()
+            adapter!!.notifyDataSetChanged()
+        }
+    }
+
 }
