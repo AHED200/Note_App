@@ -42,8 +42,6 @@ class CreateNote : AppCompatActivity() {
 
                 //Insert the new note to the database
                 noteViewModel.insertNote(newNote)
-                //Update the current notes list
-                
 
                 //Show toast and quit the CreateNote activity
                 Toast.makeText(this, "The note is inserted successfully", Toast.LENGTH_SHORT).show()
