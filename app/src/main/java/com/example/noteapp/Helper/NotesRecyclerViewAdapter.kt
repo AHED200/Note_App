@@ -34,7 +34,7 @@ class NotesRecyclerViewAdapter(var allNotes: List<Note>, val activity: MainActiv
         val note = allNotes[position]
 
         holder.itemView.setOnClickListener {
-            val context=holder.itemView.context
+            val context = holder.itemView.context
             val noteDetailsIntent = Intent(context, NoteDetails::class.java)
             noteDetailsIntent.putExtra("note", note)
             noteDetailsIntent.putExtra("deleted", 1)
